@@ -1,11 +1,13 @@
 [project]
 authors = [{name = "Jianyuan Wang", email = "jianyuan@robots.ox.ac.uk"}]
 dependencies = [
-    "numpy<2",
+    "numpy==1.26.1",
     "Pillow",
     "huggingface_hub",
     "einops",
     "safetensors",
+    "torch==2.3.1",
+    "torchvision==0.18.1",
     "opencv-python",
 ]
 name = "vggt"
@@ -50,3 +52,18 @@ default = { solve-group = "default" }
 demo = { features = ["demo"], solve-group = "default" }
 
 [tool.pixi.tasks]
+
+[tool.uv.sources]
+torch = [
+  { index = "pytorch-cu118", marker = "platform_system == 'Windows'" },
+]
+torchvision = [
+  { index = "pytorch-cu118", marker = "platform_system == 'Windows'" },
+]
+triton = { url = "https://huggingface.co/madbuda/triton-windows-builds/resolve/main/triton-2.1.0-cp311-cp311-win_amd64.whl" }
+
+[[tool.uv.index]]
+name = "pytorch-cu118"
+url = "https://download.pytorch.org/whl/cu118"
+explicit = true
+
