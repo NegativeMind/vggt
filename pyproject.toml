@@ -16,7 +16,7 @@ version = "0.0.1"
 
 [project.optional-dependencies]
 demo = [
-    "gradio==5.17.1",
+    "gradio>=5.18.0",
     "viser==0.2.23",
     "tqdm",
     "hydra-core",
