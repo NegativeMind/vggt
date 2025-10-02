@@ -9,9 +9,6 @@ dependencies = [
     "torch==2.3.1",
     "torchvision==0.18.1",
     "opencv-python",
-    "torchviz>=0.0.3",
-    "setuptools>=80.9.0",
-    "graphviz>=0.21",
 ]
 name = "vggt"
 requires-python = ">= 3.10"
@@ -30,6 +27,13 @@ demo = [
     "requests",
     "trimesh",
     "matplotlib",
+]
+visualize = [
+    "torchviz>=0.0.3",
+    "torchinfo",
+    "torchview",
+    "setuptools>=80.9.0",
+    "graphviz>=0.21"
 ]
 
 # Using setuptools as the build backend

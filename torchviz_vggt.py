@@ -28,24 +28,13 @@ images = load_and_preprocess_images(image_names).to(device)
 
 with torch.no_grad():
     with torch.cuda.amp.autocast(dtype=dtype):
-        # Predict attributes including cameras, depth maps, and point maps.
         predictions = model(images)
 
-
-# "pose_enc"：カメラポーズ（CameraHeadの出力）
-pose_enc = make_dot(predictions["pose_enc"], params=dict(model.named_parameters()))
-pose_enc.format = "png"
-pose_enc.render("VGGT_pose_enc")
-
-# "world_points"：3Dワールド座標（PointHead/DPTHeadの出力）
-# "world_points_conf"：3D座標の信頼度（PointHead/DPTHeadの出力）
-
-# "depth"：深度マップ（DepthHead/DPTHeadの出力）
-# depth = make_dot(predictions["depth"], params=dict(model.named_parameters()))
-# depth.format = "png"
-# depth.render("VGGT_depth")
-
-# "depth_conf"：深度の信頼度（DepthHead/DPTHeadの出力）
-# "track"：トラッキング結果（TrackHeadの出力）
-# "vis"：トラッキング可視性（TrackHeadの出力）
-# "conf"：トラッキング信頼度（TrackHeadの出力）
+# レイヤーごとに1ノードとなるよう、代表的な出力(depth)のみを可視化
+if "depth" in predictions:
+    output = predictions["depth"][0]
+    dot = make_dot(output, params=dict(model.named_parameters()), show_attrs=True, show_saved=True)
+    dot.format = "png"
+    dot.render("VGGT_layerwise_nodes")
+else:
+    print("No suitable outputs found for visualization.")

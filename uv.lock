@@ -2749,6 +2749,27 @@ wheels = [
 ]
 
 [[package]]
+name = "torchinfo"
+version = "1.8.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/53/d9/2b811d1c0812e9ef23e6cf2dbe022becbe6c5ab065e33fd80ee05c0cd996/torchinfo-1.8.0.tar.gz", hash = "sha256:72e94b0e9a3e64dc583a8e5b7940b8938a1ac0f033f795457f27e6f4e7afa2e9", size = 25880 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/72/25/973bd6128381951b23cdcd8a9870c6dcfc5606cb864df8eabd82e529f9c1/torchinfo-1.8.0-py3-none-any.whl", hash = "sha256:2e911c2918603f945c26ff21a3a838d12709223dc4ccf243407bce8b6e897b46", size = 23377 },
+]
+
+[[package]]
+name = "torchview"
+version = "0.2.7"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "graphviz" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/f0/45/f76ac5a2a49f3a5831ddde2e7e6b58fe423b434075e812559976a2122560/torchview-0.2.7.tar.gz", hash = "sha256:c5898fd03d256333c9827000c1f83e1052fbcfc1066032d86b30d429dd942f7c", size = 25697 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/17/66/b87d835f664f0f99a0bf1e2e294c45d286545fed35b96f2c99e700915dd9/torchview-0.2.7-py3-none-any.whl", hash = "sha256:c7f3a9d16138c20b606900ecbf46d01489f2b8c77ed97e71293883bc606c2be0", size = 26103 },
+]
+
+[[package]]
 name = "torchvision"
 version = "0.18.1"
 source = { registry = "https://pypi.org/simple" }
@@ -2981,18 +3002,15 @@ version = "0.0.1"
 source = { editable = "." }
 dependencies = [
     { name = "einops" },
-    { name = "graphviz" },
     { name = "huggingface-hub" },
     { name = "numpy" },
     { name = "opencv-python" },
     { name = "pillow" },
     { name = "safetensors" },
-    { name = "setuptools" },
     { name = "torch", version = "2.3.1", source = { registry = "https://pypi.org/simple" }, marker = "sys_platform != 'win32'" },
     { name = "torch", version = "2.3.1+cu118", source = { registry = "https://download.pytorch.org/whl/cu118" }, marker = "sys_platform == 'win32'" },
     { name = "torchvision", version = "0.18.1", source = { registry = "https://pypi.org/simple" }, marker = "sys_platform != 'win32'" },
     { name = "torchvision", version = "0.18.1+cu118", source = { registry = "https://download.pytorch.org/whl/cu118" }, marker = "sys_platform == 'win32'" },
-    { name = "torchviz" },
 ]
 
 [package.optional-dependencies]
@@ -3010,12 +3028,19 @@ demo = [
     { name = "trimesh" },
     { name = "viser" },
 ]
+visualize = [
+    { name = "graphviz" },
+    { name = "setuptools" },
+    { name = "torchinfo" },
+    { name = "torchview" },
+    { name = "torchviz" },
+]
 
 [package.metadata]
 requires-dist = [
     { name = "einops" },
     { name = "gradio", marker = "extra == 'demo'", specifier = ">=5.18.0" },
-    { name = "graphviz", specifier = ">=0.21" },
+    { name = "graphviz", marker = "extra == 'visualize'", specifier = ">=0.21" },
     { name = "huggingface-hub" },
     { name = "hydra-core", marker = "extra == 'demo'" },
     { name = "matplotlib", marker = "extra == 'demo'" },
@@ -3028,17 +3053,19 @@ requires-dist = [
     { name = "requests", marker = "extra == 'demo'" },
     { name = "safetensors" },
     { name = "scipy", marker = "extra == 'demo'" },
-    { name = "setuptools", specifier = ">=80.9.0" },
+    { name = "setuptools", marker = "extra == 'visualize'", specifier = ">=80.9.0" },
     { name = "torch", marker = "sys_platform != 'win32'", specifier = "==2.3.1" },
     { name = "torch", marker = "sys_platform == 'win32'", specifier = "==2.3.1", index = "https://download.pytorch.org/whl/cu118" },
+    { name = "torchinfo", marker = "extra == 'visualize'" },
+    { name = "torchview", marker = "extra == 'visualize'" },
     { name = "torchvision", marker = "sys_platform != 'win32'", specifier = "==0.18.1" },
     { name = "torchvision", marker = "sys_platform == 'win32'", specifier = "==0.18.1", index = "https://download.pytorch.org/whl/cu118" },
-    { name = "torchviz", specifier = ">=0.0.3" },
+    { name = "torchviz", marker = "extra == 'visualize'", specifier = ">=0.0.3" },
     { name = "tqdm", marker = "extra == 'demo'" },
     { name = "trimesh", marker = "extra == 'demo'" },
     { name = "viser", marker = "extra == 'demo'", specifier = "==0.2.23" },
 ]
-provides-extras = ["demo"]
+provides-extras = ["demo", "visualize"]
 
 [[package]]
 name = "vhacdx"
