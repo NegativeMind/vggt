@@ -29,7 +29,6 @@ demo = [
     "matplotlib",
 ]
 visualize = [
-    "torchviz>=0.0.3",
     "torchinfo",
     "torchview",
     "setuptools>=80.9.0",
