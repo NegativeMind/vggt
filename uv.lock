@@ -2826,20 +2826,6 @@ wheels = [
 ]
 
 [[package]]
-name = "torchviz"
-version = "0.0.3"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "graphviz" },
-    { name = "torch", version = "2.3.1", source = { registry = "https://pypi.org/simple" }, marker = "sys_platform != 'win32'" },
-    { name = "torch", version = "2.3.1+cu118", source = { registry = "https://download.pytorch.org/whl/cu118" }, marker = "sys_platform == 'win32'" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/5c/80/a84e0e8877630262c3f4c8d2e7fd0647c6751afeca301cfc04a1b65ac820/torchviz-0.0.3.tar.gz", hash = "sha256:2e95f2fea7a31ec9549f2d6bbf446d75aeb6a9880fcf13e7dd843fdcdb4a3725", size = 5705 }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/5e/06/bea648249802b65282414caf5e7bc94fcb6e5a3e311b537845417d19edb9/torchviz-0.0.3-py3-none-any.whl", hash = "sha256:5eab98d17cbe8a54727cfa6a527681cff613430fff8fc68f52302ca5fa26cdf1", size = 5708 },
-]
-
-[[package]]
 name = "tqdm"
 version = "4.67.1"
 source = { registry = "https://pypi.org/simple" }
@@ -3033,7 +3019,6 @@ visualize = [
     { name = "setuptools" },
     { name = "torchinfo" },
     { name = "torchview" },
-    { name = "torchviz" },
 ]
 
 [package.metadata]
@@ -3060,7 +3045,6 @@ requires-dist = [
     { name = "torchview", marker = "extra == 'visualize'" },
     { name = "torchvision", marker = "sys_platform != 'win32'", specifier = "==0.18.1" },
     { name = "torchvision", marker = "sys_platform == 'win32'", specifier = "==0.18.1", index = "https://download.pytorch.org/whl/cu118" },
-    { name = "torchviz", marker = "extra == 'visualize'", specifier = ">=0.0.3" },
     { name = "tqdm", marker = "extra == 'demo'" },
     { name = "trimesh", marker = "extra == 'demo'" },
     { name = "viser", marker = "extra == 'demo'", specifier = "==0.2.23" },
